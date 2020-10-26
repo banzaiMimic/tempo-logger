@@ -29,3 +29,6 @@ ref: https://tempo-io.github.io/tempo-api-docs/
   ]
 */
 ```
+
+### jira account id
+to get jira account id click profile icon top right go to PROFILE it will be end number at url https://consultoria.atlassian.net/jira/people/XXXXXX:XXXXXXXXXXXXXXXXX
