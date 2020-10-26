@@ -5,10 +5,14 @@
   "author": "drMimic",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.21.0",
     "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.0"
   }
 }
