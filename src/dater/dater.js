@@ -1,19 +1,25 @@
+const cleanDay = day => {
+  if (day.length > 2) {
+    throw new Error('day max length = 2')
+  }
+  return (day.charAt(0) == '0') ? day.substring(1, day.length) : day
+}
+
 const createDates = (year, month, dayStart, dayEnd) => {
   let returnArr = []
 
   try {
-    if (dayStart.charAt(0) == '0') {
-      dayStart = dayStart.substring(1, dayStart.length)
-    }
+    dayStart = cleanDay( dayStart )
+    dayEnd = cleanDay( dayEnd )
     let i = dayStart
     for( i; i <= dayEnd; i++) {
       let day = (i < 10) ? `0${i}` : i
       let m = (month < 10) ? `0${month}` : month
-      returnArr.push(`${year}-${month}-${day}`)
+      returnArr.push(`${year}-${m}-${day}`)
     }
 
   } catch(e) {
-    throw new Error(e)
+    throw e
   }
 
   return returnArr
