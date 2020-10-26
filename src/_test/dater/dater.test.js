@@ -11,7 +11,7 @@ test('createDates single digit returns correctly', () => {
   expect( dates ).toStrictEqual( expected )
 })
 
-test('createDates 0x digits returns correctly', () => {
+test('createDates day 0x digits returns correctly', () => {
   let dates = dater.createDates('2020','10','01','03')
   let expected = [
     '2020-10-01',
@@ -22,8 +22,19 @@ test('createDates 0x digits returns correctly', () => {
   expect( dates ).toStrictEqual( expected )
 })
 
-test('createDates xx digits returns correctly', () => {
+test('createDates day xx digits returns correctly', () => {
   let dates = dater.createDates('2020','1','10','12')
+  let expected = [
+    '2020-01-10',
+    '2020-01-11',
+    '2020-01-12'
+  ]
+  expect( dates.length ).toBe(3)
+  expect( dates ).toStrictEqual( expected )
+})
+
+test('createDates month 0x digits returns correctly', () => {
+  let dates = dater.createDates('2020','01','10','12')
   let expected = [
     '2020-01-10',
     '2020-01-11',

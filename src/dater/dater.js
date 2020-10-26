@@ -1,4 +1,4 @@
-const cleanDay = day => {
+const cleanTwoDigit = day => {
   if (day.length > 2) {
     throw new Error('day max length = 2')
   }
@@ -9,8 +9,9 @@ const createDates = (year, month, dayStart, dayEnd) => {
   let returnArr = []
 
   try {
-    dayStart = cleanDay( dayStart )
-    dayEnd = cleanDay( dayEnd )
+    month = cleanTwoDigit( month )
+    dayStart = cleanTwoDigit( dayStart )
+    dayEnd = cleanTwoDigit( dayEnd )
     let i = dayStart
     for( i; i <= dayEnd; i++) {
       let day = (i < 10) ? `0${i}` : i
