@@ -3,15 +3,7 @@ const endpoint = 'https://api.tempo.io/core/3'
 const axios = require('axios')
 const dater = require('./dater')
 const timer = require('./timer')
-
-const shuffleArray = array => {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-}
+const { shuffleArray } = require('./utils')
 
 let issues = [
   'issue-A',
