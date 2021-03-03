@@ -3,12 +3,10 @@ const endpoint = 'https://api.tempo.io/core/3'
 const axios = require('axios')
 const timer = require('./timer')
 const { shuffleArray } = require('./utils')
-let { issues, dates } = require('./config')
+let { issues, dates, totalHours, startTime } = require('./config')
 
 shuffleArray(issues)
 shuffleArray(dates)
-const totalHours = 11
-const startTime = '06:00:00'
 
 let timeObjects = timer.makeTimes({
   dates,
@@ -38,7 +36,7 @@ timeObjects.forEach( to => {
     console.log(`status:${res.status} data:${res.config.data}`)
   })
   .catch( err => {
-    console.log(`err on issue ${issues[idx]}`)
+    console.log(`err with timeObject ${to}`)
     console.log({
       message: err.message,
       time,
