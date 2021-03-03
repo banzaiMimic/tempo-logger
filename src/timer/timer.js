@@ -44,17 +44,15 @@ const makeTimes = ({dates, totalHours, issues, startTime}) => {
         seconds: fullDivvy[idx],
         partsInt: subIssues.length
       })
-      console.log('subIssues:', subIssues)
-      console.log('subDivvy:', subDivvy)
       subIssues.map( (issueKey, idxx) => {
         let timeSpentSeconds = subDivvy[idxx]
-        start = (idx === 0) ? start : start.add(timeSpentSeconds, 'seconds')
         returnArr.push({
           issueKey,
           startDate: date,
           timeSpentSeconds,
           startTime: start.format('HH:mm:ss')
         })
+        start.add(timeSpentSeconds, 'seconds')
       })
     })
   } catch(e) {

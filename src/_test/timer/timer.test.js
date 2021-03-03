@@ -1,35 +1,65 @@
-const { TestScheduler } = require('jest')
 const timer = require('../../timer')
+const moment = require('moment')
 
-const getDifferenceInSeconds = (days, hours, min) => {
-  let times = timer.createTimes(days,hours,min)
-  let expectedTotalSecs = timer.hoursToSeconds(hours)
-  let totalSecs = times.reduce((a,b) => (a+b))
-  return expectedTotalSecs - totalSecs
-}
+test('spaces time-objects equally from each other by startTime and timeSpentSeconds from 7 issues', () => {
+  let issues = [
+    'issue-A',
+    'issue-B',
+    'issue-C',
+    'issue-D',
+    'issue-E',
+    'issue-F',
+    'issue-G'
+  ]
+  let dates = [
+    '2020-10-01',
+    '2020-10-02',
+    '2020-10-03'
+  ]
+  let startTime = '06:00:00'
+  let expectedStart = moment(startTime, 'HH:mm:ss')
+  let totalHours = 14
 
-const minDiff = 60
+  const timeObjects = timer.makeTimes({
+    dates,
+    totalHours,
+    issues,
+    startTime
+  })
 
-test('createTimes | 160 over 31 days', () => {
-  expect( getDifferenceInSeconds(31,160,1) ).toBeLessThan( minDiff )
+  timeObjects.map( to => {
+    expect(to.startTime).toBe(expectedStart.format('HH:mm:ss'))
+    expectedStart.add(to.timeSpentSeconds, 'seconds')
+  })
+
 })
 
-test('createTimes | 120 over 31 days', () => {
-  expect( getDifferenceInSeconds(31,120,1) ).toBeLessThan( minDiff )
-})
+test('time-objects timeSpentSeconds add up to within 1 minute of totalHours passed in', () => {
+  let issues = [
+    'issue-A',
+    'issue-B',
+    'issue-C'
+  ]
+  let dates = [
+    '2020-10-01',
+    '2020-10-02',
+    '2020-10-03'
+  ]
+  let startTime = '06:00:00'
+  let totalHours = 14
 
-test('createTimes | 80 over 31 days', () => {
-  expect( getDifferenceInSeconds(31,80,1) ).toBeLessThan( minDiff )
-})
+  const timeObjects = timer.makeTimes({
+    dates,
+    totalHours,
+    issues,
+    startTime
+  })
 
-test('createTimes | 80 over 14 days', () => {
-  expect( getDifferenceInSeconds(14,80,1) ).toBeLessThan( minDiff )
-})
-
-test('createTimes | 80 over 7 days', () => {
-  expect( getDifferenceInSeconds(7,80,1) ).toBeLessThan( minDiff )
-})
-
-test('createTimes | 40 over 7 days', () => {
-  expect( getDifferenceInSeconds(7,40,1) ).toBeLessThan( minDiff )
+  let totalTimeSpentSeconds = 0
+  timeObjects.map( to => {
+    totalTimeSpentSeconds += to.timeSpentSeconds
+  })
+  let expectedSeconds = timer.hoursToSeconds(totalHours)
+  let difference = expectedSeconds - totalTimeSpentSeconds
+  expect(difference).toBeLessThan(60)
 })
