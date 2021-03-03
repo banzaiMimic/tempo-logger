@@ -4,16 +4,7 @@ const axios = require('axios')
 const dater = require('./dater')
 const timer = require('./timer')
 const { shuffleArray } = require('./utils')
-
-let issues = [
-  'issue-A',
-  'issue-B',
-  'issue-C',
-  'issue-D',
-  'issue-E',
-  'issue-F',
-  'issue-G'
-]
+let issues = require('./config')
 
 let dates = dater.createDates('2020','08','1','17')
 shuffleArray(issues)
