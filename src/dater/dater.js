@@ -2,7 +2,8 @@ const cleanTwoDigit = day => {
   if (day.length > 2) {
     throw new Error('day max length = 2')
   }
-  return (day.charAt(0) == '0') ? day.substring(1, day.length) : day
+  let returnStr = (day.charAt(0) == '0') ? day.substring(1, day.length) : day
+  return parseInt(returnStr)
 }
 
 const createDates = (year, month, dayStart, dayEnd) => {

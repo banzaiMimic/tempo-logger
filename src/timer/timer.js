@@ -14,7 +14,7 @@ const divvy = ({seconds, partsInt}) => {
     out.push( Math.random() )
   }
   
-  const mult = Math.floor( randombit / out.reduce(function (a,b) {return a+b;}) )
+  const mult = Math.floor( randombit / out.reduce(function (a,b) {return a+b}) )
   
   return out.map( el => {
     let ret = Math.floor(el * mult + .5)
