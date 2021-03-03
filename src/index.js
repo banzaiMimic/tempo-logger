@@ -18,12 +18,14 @@ let issues = [
 let dates = dater.createDates('2020','08','1','17')
 shuffleArray(issues)
 shuffleArray(dates)
-
 const totalHours = 11
+const startTime = '06:00:00'
+
 let times = timer.makeTimes({
   dates,
   totalHours,
-  issues
+  issues,
+  startTime
 })
 
 times.forEach( (time,idx) => {

@@ -1,4 +1,5 @@
 const { shuffleArray } = require('../utils')
+const moment = require('moment')
 
 const hoursToSeconds = hours => Math.floor(hours * 60 * 60)
 const secondsToHours = seconds => Math.floor(seconds / 3600)
@@ -22,10 +23,10 @@ const divvy = ({seconds, partsInt}) => {
 
 }
 
-const makeTimes = ({dates, totalHours, issues}) => {
+const makeTimes = ({dates, totalHours, issues, startTime}) => {
   const originalIssues = JSON.parse(JSON.stringify(issues))
-  let clonedIssues = JSON.parse(JSON.stringify(originalIssues))
   const issuesPerDay = 3
+  let clonedIssues = JSON.parse(JSON.stringify(originalIssues))
   let returnArr = []
   let fullDivvy = divvy({
     seconds: hoursToSeconds(totalHours),
@@ -33,6 +34,7 @@ const makeTimes = ({dates, totalHours, issues}) => {
   })
   
   try {
+    let start = moment(startTime, "HH:mm:ss")
     dates.map( (date, idx) => {
 
       clonedIssues = (clonedIssues.length <= 0) ? JSON.parse(JSON.stringify(originalIssues)) : clonedIssues
@@ -45,16 +47,20 @@ const makeTimes = ({dates, totalHours, issues}) => {
       console.log('subIssues:', subIssues)
       console.log('subDivvy:', subDivvy)
       subIssues.map( (issueKey, idxx) => {
+        let timeSpentSeconds = subDivvy[idxx]
+        start = (idx === 0) ? start : start.add(timeSpentSeconds, 'seconds')
         returnArr.push({
           issueKey,
           startDate: date,
-          timeSpentSeconds: subDivvy[idxx]
+          timeSpentSeconds,
+          startTime: start.format('HH:mm:ss')
         })
       })
     })
   } catch(e) {
     console.error(e)
   }
+
   return returnArr
 }
 

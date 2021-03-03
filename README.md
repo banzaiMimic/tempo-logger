@@ -21,8 +21,12 @@ ref: https://tempo-io.github.io/tempo-api-docs/
 ### timer
 ```
 /*
-  timer.makeTimes({dates, totalHours, issues})
-  creates tempo-formatted time objects accepts array of dates, totalHours, and array of issueIds
+  timer.makeTimes({dates, totalHours, issues, startTime})
+  creates tempo-formatted time objects
+  - dates: string [] [see dater.createDates method above]
+  - totalHours: int
+  - issues: string [] jira issue ids i.e. ['DRM-1234','DRM-1235']
+  - startTime: string with HH:MM:SS format : '06:00:00'
 
   returns:
   [
