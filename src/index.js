@@ -39,8 +39,6 @@ timeObjects.forEach( to => {
     console.log(`err with timeObject ${to}`)
     console.log({
       message: err.message,
-      time,
-      startDate: dates[idx],
       authorAccountId: process.env.JIRA_ACT_ID
     })
   })
