@@ -36,7 +36,12 @@ timeObjects.forEach( to => {
     console.log(`status:${res.status} data:${res.config.data}`)
   })
   .catch( err => {
-    console.log(`err with timeObject ${to}`)
+    console.log('err with timeObject:', {
+      issueKey: to.issueKey,
+      startDate: to.startDate,
+      timeSpentSeconds: to.timeSpentSeconds,
+      startTime: to.startTime
+    })
     console.log({
       message: err.message,
       authorAccountId: process.env.JIRA_ACT_ID
