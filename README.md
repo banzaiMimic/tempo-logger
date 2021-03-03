@@ -21,13 +21,17 @@ ref: https://tempo-io.github.io/tempo-api-docs/
 ### timer
 ```
 /*
-  timer.createTimes(entries, totalHours, minDay)
-  returns array of times (in seconds) randomized with minimum of ${minDay} to equal a sum of within 1 minute of ${totalHours} :
+  timer.makeTimes({dates, totalHours, issues})
+  creates tempo-formatted time objects accepts array of dates, totalHours, and array of issueIds
 
-  timer.createTimes(days,hours,min)
-  //returns:
+  returns:
   [
-    27439, 19581, 35979, 9921, 31311, 15561, 4204
+    {
+      issueKey: 'issue-G',
+      startDate: '2020-08-16',
+      timeSpentSeconds: 1009,
+      startTime: "06:00:00"
+    } 
   ]
 */
 ```
