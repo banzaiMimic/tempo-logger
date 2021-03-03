@@ -1,3 +1,5 @@
+const dater = require('../dater')
+
 let issues = [
   'issue-A',
   'issue-B',
@@ -7,5 +9,10 @@ let issues = [
   'issue-F',
   'issue-G'
 ]
+//createDates : year, MM, D (day start i.e. 1), DD (day end i.e. 17)
+let dates = dater.createDates('2021','01','1','17')
 
-module.exports = issues
+module.exports = {
+  issues,
+  dates
+}
