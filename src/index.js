@@ -15,14 +15,14 @@ let timeObjects = timer.makeTimes({
   startTime
 })
 
-timeObjects.forEach( to => {
+timeObjects.forEach( async(to) => {
   const { 
     issueKey,
     startDate,
     timeSpentSeconds,
     startTime
   } = to
-  axios.post(`${endpoint}/worklogs/`, 
+  await axios.post(`${endpoint}/worklogs/`, 
   {
     issueKey,
     timeSpentSeconds,
