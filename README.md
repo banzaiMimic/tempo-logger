@@ -1,6 +1,6 @@
 will use Tempo API v3 to log time to Jira issues
 
-ref: https://tempo-io.github.io/tempo-api-docs/
+ref: https://apidocs.tempo.io/
 
 ### dater
 ```
